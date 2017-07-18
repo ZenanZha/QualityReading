@@ -11,7 +11,7 @@ import java.net.URL;
 
 public class Book {
     private class DownloadThumbnailTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView view;
+        private ImageView view;
 
         public DownloadThumbnailTask(ImageView view) {
             this.view = view;
@@ -36,18 +36,22 @@ public class Book {
         }
     }
 
-    String title;
-    String author;
-    String publisher;
-    String publishDate;
-    String thumbnail;
-    public Book (String title, String author, String publisher, String publishDate, String thumbnail) {
+    private String id;
+    private String title;
+    private String author;
+    private String publisher;
+    private String publishDate;
+    private String thumbnail;
+    public Book (String id, String title, String author, String publisher, String publishDate, String thumbnail) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.publishDate = publishDate;
         this.thumbnail = thumbnail;
     }
+
+    public String getID() { return id; }
 
     public String getTitle(){
         return title;
@@ -69,9 +73,22 @@ public class Book {
         return thumbnail;
     }
 
-    public void showThumbnail(ImageView view){
+    public void displayThumbnail(ImageView view){
         if(!thumbnail.isEmpty()){
             new DownloadThumbnailTask(view).execute(thumbnail);
         }
     }
+
+    @Override
+    public String toString() {
+        String ret = "book {\n";
+        ret += ("  id: " + id + ",\n");
+        ret += ("  title: " + title + ",\n");
+        ret += ("  author: " + author + ",\n");
+        ret += ("  publisher: " + publisher + ",\n");
+        ret += ("  publishDate: " + publishDate + ",\n");
+        ret += ("  thumbnail: " + thumbnail + ",\n");
+        return ret + "}\n";
+    }
 }
+

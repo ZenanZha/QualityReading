@@ -42,6 +42,8 @@ public class Book {
     private String publisher;
     private String publishDate;
     private String thumbnail;
+    public Book(){};
+
     public Book (String id, String title, String author, String publisher, String publishDate, String thumbnail) {
         this.id = id;
         this.title = title;
